@@ -1,7 +1,56 @@
-🤖 MNIST Digit Classifier (Convolutional Neural Network)This project implements a Convolutional Neural Network (CNN) to recognize handwritten digits from the MNIST dataset. It was built using PyTorch and Torchvision, achieving a high classification accuracy on the test set.🚀 Project Goals & AchievementsBased on the project outline, the following goals were achieved:RequirementStatusResultTest Accuracy Target✅ AchievedFinal Test Accuracy: $\approx 98.7\%$Model Implementation✅ CompleteBuilt and trained a 2-layer CNN.Tooling✅ CompleteUtilized DataLoader, autograd, and SGD optimizer with proper loss tracking.Evaluation✅ CompleteGenerated Training Curves and Confusion Matrices.Demonstration✅ CompleteDemonstrated model inference on random test samples.🛠️ Technology StackDeep Learning Framework: PyTorchData Handling: TorchvisionOptimization: Stochastic Gradient Descent (SGD)Acceleration: GPU Acceleration (optional, but utilized if available)Visualization: Matplotlib, Seaborn📂 Project Structure.
-├── data/                       # MNIST dataset files are downloaded here
-├── mnist_cnn.pt                # Saved weights of the final trained model (optional)
-├── MNIST_Digit_Classifier.ipynb # Main code file (Jupyter/Colab Notebook)
-└── README.md                   # This file
-⚙️ Model ArchitectureThe neural network is a simple CNN designed to process the $28 \times 28$ grayscale images.The architecture consists of:Input: $1 \times 28 \times 28$ image.Conv1: Conv2d(1, 32, kernel_size=3) $\rightarrow$ ReLU $\rightarrow$ MaxPool2d(2)Conv2: Conv2d(32, 64, kernel_size=3) $\rightarrow$ ReLU $\rightarrow$ MaxPool2d(2)Flatten: Converts feature maps into a 1D vector (64 channels $\times 5 \times 5 = \mathbf{1600}$ features).Dropout: Dropout2d(0.25) to prevent overfitting.FC1 (Linear): Linear(1600, 128) $\rightarrow$ ReLUFC2 (Output): Linear(128, 10) (Output layer with 10 classes for digits 0-9).🏃 Getting StartedPrerequisitesYou will need Python 3.7+ and the following libraries:Bashpip install torch torchvision numpy matplotlib scikit-learn seaborn pandas
-Execution StepsClone the repository (if hosted on GitHub) or open the Jupyter Notebook (MNIST_Digit_Classifier.ipynb).Run the cells sequentially:Data Loading: The script automatically downloads and normalizes the MNIST data.Model Definition: Defines the Net class.Training Loop: Runs the training over several epochs (e.g., 10), recording loss and accuracy.Evaluation: Generates the accuracy plot and confusion matrix.Inference: Displays a sample of predicted digits.📊 ResultsThe training successfully pushed the model's performance beyond the $95\%$ accuracy target.MetricValueFinal Test Accuracy98.7%Loss FunctionCross-Entropy LossOptimizerSGD (lr=0.01, momentum=0.5)(Include the plots you generated here, perhaps as static images in your repository, and reference them in the README.)Test Accuracy CurveA plot showing the increase in test accuracy over the training epochs.Confusion MatrixA heatmap showing the classification results, highlighting where misclassifications occurred (e.g., confusing '4' and '9').
+# 🤖 MNIST Digit Classifier (Convolutional Neural Network)
+
+This project implements a Convolutional Neural Network (CNN) to recognize handwritten digits from the MNIST dataset using PyTorch. The model was successfully trained to achieve high classification accuracy, significantly exceeding the target requirement.
+
+## 🚀 Project Goals & Achievements
+
+| Requirement | Status | Result |
+| :--- | :--- | :--- |
+| **Test Accuracy Target** | ✅ Achieved | Final Test Accuracy: **~98.7%** |
+| Model Implementation | ✅ Complete | Built and trained a 2-layer CNN. |
+| Tooling | ✅ Complete | Utilized DataLoader, `autograd`, and **SGD optimizer**. |
+| Evaluation & Validation | ✅ Complete | Generated **Training Curves** and **Confusion Matrices**. |
+| Demonstration | ✅ Complete | Demonstrated model inference on random test samples. |
+
+## 🛠️ Technology Stack
+
+* **Deep Learning Framework:** PyTorch
+* **Data Handling:** Torchvision
+* **Optimization:** Stochastic Gradient Descent (SGD)
+* **Visualization:** Matplotlib, Seaborn
+
+## ⚙️ Model Architecture
+
+The core of the project is the `Net` class, a Convolutional Neural Network architecture designed for image classification.
+
+| Layer Type | Parameters / Operation | Output Shape (after operation) |
+| :--- | :--- | :--- |
+| **Input** | 28x28 Grayscale Image | 1x28x28 |
+| **Conv1** | `nn.Conv2d(1, 32, kernel_size=3)` | 32x26x26 |
+| **Pool1** | `nn.MaxPool2d(2)` | 32x13x13 |
+| **Conv2** | `nn.Conv2d(32, 64, kernel_size=3)` | 64x11x11 |
+| **Pool2** | `nn.MaxPool2d(2)` | 64x5x5 |
+| **Flatten** | `torch.flatten` | **1600** features |
+| **FC1** | `nn.Linear(1600, 128)` + ReLU + Dropout | 128 features |
+| **FC2 (Output)** | `nn.Linear(128, 10)` | 10 classes |
+
+##  Getting Started
+
+### Prerequisites
+Ensure you have Python 3.7+ installed and the necessary libraries:
+pip install torch torchvision numpy matplotlib scikit-learn seaborn pandas
+### Execution
+Open the project notebook (MNIST_Digit_Classifier.ipynb or equivalent Python script).
+
+Run the code cells sequentially, starting with Data Loading, Model Definition, and the Training/Testing loop.
+
+The final cells will generate the required evaluation plots:
+
+Test Accuracy vs. Epoch: Visualizing learning progress.
+
+Confusion Matrix: Showing which digits the model successfully or incorrectly classified.
+
+Sample Inference: Displaying random test images with their predicted labels.
+
+## Results
+The model achieved its peak performance around Epoch 7-10. The Confusion Matrix confirms robust performance across all 10 digits, with minimal errors concentrated on visually similar digits (e.g., 4 vs. 9, 3 vs. 5).
